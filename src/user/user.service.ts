@@ -12,8 +12,8 @@ export class UserServices{
         return this.userRepository.find();
     }
 
-    async createUser(name: string , password : string , email:string): Promise<User>{
-        const newUser=this.userRepository.create({name,password,email})
+    async createUser(name: string ,email:string, password : string): Promise<User>{
+        const newUser=this.userRepository.create({name,email,password})
         return this.userRepository.save(newUser);
     }
 
@@ -21,10 +21,18 @@ export class UserServices{
         const result=this.userRepository.delete(id)
         if((await result).affected===0){
             throw new NotFoundException('User Not Found');
-
         }
         else{
             return {message: `User with id : ${id} deleted` }
         }
     }
+    async findById(id: number): Promise<User | null> {
+        return await this.userRepository.findOne({ where: { id } });
+      }
+
+
+    async findByEmail(email: string): Promise<User | null> {
+        return await this.userRepository.findOne({ where: { email } });
+    }
+      
 }

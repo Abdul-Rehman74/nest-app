@@ -6,8 +6,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TodosModule } from './todos/todos.module';
 import { Todo } from './todos/todos.entiry';
 import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
 import { User } from './user/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
